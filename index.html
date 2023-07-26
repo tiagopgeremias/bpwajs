@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic page width AlpineJS</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body>
+    <div x-data="{ users: {} }" x-init="users = await (await fetch('https://randomuser.me/api/?results=5')).json()">
+        <ul>
+            <template x-for="user in users.results">
+                <li x-text="user.name.first+' '+user.name.last"></li>
+            </template>
+        </ul>
+        <button x-on:click="users = await (await fetch('https://randomuser.me/api/?results=5')).json()">Get</button>
+    </div>
+</body>
+</html>
